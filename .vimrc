@@ -24,3 +24,4 @@ set smartindent
 set incsearch
 set hlsearch
 nnoremap <CR> : nohlsearch<CR><CR>
+set clipboard=unnamedplus
