@@ -1,0 +1,11 @@
+#!/bin/bash
+cmd(){
+	pacmd list-sinks | grep -P -A1 "[^\*] index: (\d)" | grep -B1 -P "(name: .*hdmi|.*ODAC)" | head -n 1 | cut -f6 -d " "
+}
+port=$(cmd)
+
+pacmd set-default-sink $port
+pacmd list-sink-inputs | grep index | while read line
+do
+pacmd move-sink-input `echo $line | cut -f2 -d' '` $port
+done
